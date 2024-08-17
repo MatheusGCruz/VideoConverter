@@ -1,0 +1,11 @@
+C:\Projects\VideoConverter\bin\Debug\VideoConverter.exe.config
+C:\Projects\VideoConverter\bin\Debug\VideoConverter.exe
+C:\Projects\VideoConverter\bin\Debug\VideoConverter.pdb
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.csproj.AssemblyReference.cache
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.csproj.SuggestedBindingRedirects.cache
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.Properties.Resources.resources
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.Form1.resources
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.csproj.GenerateResource.cache
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.csproj.CoreCompileInputs.cache
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.exe
+C:\Projects\VideoConverter\obj\Debug\VideoConverter.pdb
