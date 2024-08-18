@@ -36,6 +36,9 @@
             this.inputDirText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.consoleTextBox = new System.Windows.Forms.TextBox();
+            this.reloadButton = new System.Windows.Forms.Button();
+            this.renameButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // InputTextbox
@@ -107,11 +110,45 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Output Directory";
             // 
+            // consoleTextBox
+            // 
+            this.consoleTextBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.consoleTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.consoleTextBox.Location = new System.Drawing.Point(790, 13);
+            this.consoleTextBox.Multiline = true;
+            this.consoleTextBox.Name = "consoleTextBox";
+            this.consoleTextBox.ReadOnly = true;
+            this.consoleTextBox.Size = new System.Drawing.Size(552, 431);
+            this.consoleTextBox.TabIndex = 8;
+            // 
+            // reloadButton
+            // 
+            this.reloadButton.Location = new System.Drawing.Point(713, 27);
+            this.reloadButton.Name = "reloadButton";
+            this.reloadButton.Size = new System.Drawing.Size(75, 23);
+            this.reloadButton.TabIndex = 9;
+            this.reloadButton.Text = "Reload";
+            this.reloadButton.UseVisualStyleBackColor = true;
+            this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
+            // 
+            // renameButton
+            // 
+            this.renameButton.Location = new System.Drawing.Point(713, 53);
+            this.renameButton.Name = "renameButton";
+            this.renameButton.Size = new System.Drawing.Size(75, 23);
+            this.renameButton.TabIndex = 10;
+            this.renameButton.Text = "Rename Files";
+            this.renameButton.UseVisualStyleBackColor = true;
+            this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1354, 450);
+            this.Controls.Add(this.renameButton);
+            this.Controls.Add(this.reloadButton);
+            this.Controls.Add(this.consoleTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputDirText);
@@ -122,6 +159,7 @@
             this.Controls.Add(this.InputTextbox);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +175,9 @@
         private System.Windows.Forms.TextBox inputDirText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox consoleTextBox;
+        private System.Windows.Forms.Button reloadButton;
+        private System.Windows.Forms.Button renameButton;
     }
 }
 
