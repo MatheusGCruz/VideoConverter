@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliary\MultiTextWriter.cs" />
+    <Compile Include="Auxiliary\Subtitles.cs" />
+    <Compile Include="Auxiliary\TextAdjust.cs" />
+    <Compile Include="Auxiliary\TextStreamWriter.cs" />
     <Compile Include="VideoConverterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FileBuffer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
