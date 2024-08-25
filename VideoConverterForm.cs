@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoConverter.Auxiliary;
+using System.Configuration;
 
 namespace VideoConverter
 {
@@ -30,8 +31,11 @@ namespace VideoConverter
 
         private void loadConfig()
         {
-            inputDirText.Text = "D:/Videos";
-            outputDirText.Text = "\\\\Antares-server\\k\\Source\\NodeServer\\videos";
+            inputDirText.Text = ConfigurationSettings.AppSettings["inputFolder"];
+            outputDirText.Text = ConfigurationSettings.AppSettings["outputFolder"];
+
+            serverlessCheckBox.Checked = (ConfigurationSettings.AppSettings["serverless"] == "true");
+
         }
 
         private void loadFiles() 
@@ -74,6 +78,14 @@ namespace VideoConverter
 
             InputTextbox.Text = inputString;
             OutputTextbox.Text = outputString;
+
+            if(serverlessCheckBox.Checked && filesComboBox.Items[0] != null)
+            {
+                filesComboBox.Text = filesComboBox.Items[0].ToString();
+                serverlessConvert();
+            }
+
+
         
         }
 
@@ -85,11 +97,13 @@ namespace VideoConverter
             string bufferedFile = importFile(filesComboBox.Text);
             string outputValue = bufferedFile.Replace(".mkv", "-out.mp4");
 
+            string subtitlesTrack = findSubtitleTrack(bufferedFile);
+
 
             Console.WriteLine("Converting ...");
-            string parameter = " -i " + bufferedFile + " -vf subtitles=" + bufferedFile + ":si=" + Subtitles.subtitles("por","Erai-raws") + " " + outputValue;
-
-            Console.WriteLine(Execute(@"C:\Projects\ffmpeg\bin\ffmpeg", parameter));
+            string parameter = " -i " + bufferedFile + " -vf subtitles=" + bufferedFile + ":si=" + subtitlesTrack + " " + outputValue;
+            string ffmpegLocation = ConfigurationSettings.AppSettings["ffmpegLocation"];
+            Console.WriteLine(Execute(@ffmpegLocation, parameter));
 
             Console.WriteLine("Conversion Finished");
 
@@ -100,6 +114,50 @@ namespace VideoConverter
             Console.WriteLine("Buffer cleared");
 
 
+        }
+
+        private void serverlessConvert()
+        {
+            Console.WriteLine("Importing file:" + filesComboBox.Text);
+            string bufferedFile = importFile(filesComboBox.Text);
+            string outputValue = bufferedFile.Replace(".mkv", "-out.mp4");
+
+            string subtitlesTrack = findSubtitleTrack(bufferedFile);
+
+            Console.WriteLine("Converting ...");
+            string parameter = " -i " + bufferedFile + " -vf subtitles=" + bufferedFile + ":si=" + subtitlesTrack + " " + outputValue;
+
+            string ffmpegLocation = ConfigurationSettings.AppSettings["ffmpegLocation"];
+            Console.WriteLine(Execute(@ffmpegLocation, parameter));
+
+            Console.WriteLine("Conversion Finished");
+
+            exportFile(outputValue);
+            Console.WriteLine("Archive Exported");
+
+            deleteBufferedFile(bufferedFile);
+            Console.WriteLine("Buffer cleared");
+
+            this.Close();
+
+
+        }
+
+        private static string findSubtitleTrack(String filename)
+        {
+            string subtitlesTrack = "0";
+            List<string> subsList = new List<string>(ConfigurationSettings.AppSettings["subsList"].Split(new char[] { ';' }));
+            List<string> ptbrIndex = new List<string>(ConfigurationSettings.AppSettings["ptbrIndex"].Split(new char[] { ';' }));
+
+            for (int i = 0; i < subsList.Count; i++)
+            {
+                if (filename.Contains(subsList[i]))
+                {
+                    subtitlesTrack = ptbrIndex[i];
+                }
+            }
+
+            return subtitlesTrack;
         }
 
         private static string Execute(string exePath, string parameters)

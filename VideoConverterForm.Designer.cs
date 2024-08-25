@@ -39,6 +39,7 @@
             this.consoleTextBox = new System.Windows.Forms.TextBox();
             this.reloadButton = new System.Windows.Forms.Button();
             this.renameButton = new System.Windows.Forms.Button();
+            this.serverlessCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // InputTextbox
@@ -114,11 +115,11 @@
             // 
             this.consoleTextBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.consoleTextBox.ForeColor = System.Drawing.Color.Lime;
-            this.consoleTextBox.Location = new System.Drawing.Point(790, 13);
+            this.consoleTextBox.Location = new System.Drawing.Point(790, 53);
             this.consoleTextBox.Multiline = true;
             this.consoleTextBox.Name = "consoleTextBox";
             this.consoleTextBox.ReadOnly = true;
-            this.consoleTextBox.Size = new System.Drawing.Size(552, 431);
+            this.consoleTextBox.Size = new System.Drawing.Size(552, 391);
             this.consoleTextBox.TabIndex = 8;
             // 
             // reloadButton
@@ -141,11 +142,23 @@
             this.renameButton.UseVisualStyleBackColor = true;
             this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
             // 
+            // serverlessCheckBox
+            // 
+            this.serverlessCheckBox.AutoSize = true;
+            this.serverlessCheckBox.Enabled = false;
+            this.serverlessCheckBox.Location = new System.Drawing.Point(794, 29);
+            this.serverlessCheckBox.Name = "serverlessCheckBox";
+            this.serverlessCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.serverlessCheckBox.TabIndex = 11;
+            this.serverlessCheckBox.Text = "Serverless";
+            this.serverlessCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 450);
+            this.Controls.Add(this.serverlessCheckBox);
             this.Controls.Add(this.renameButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.consoleTextBox);
@@ -178,6 +191,7 @@
         private System.Windows.Forms.TextBox consoleTextBox;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.Button renameButton;
+        private System.Windows.Forms.CheckBox serverlessCheckBox;
     }
 }
 
